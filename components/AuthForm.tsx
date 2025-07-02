@@ -112,6 +112,3 @@ const AuthForm = ({type} : {type : FormType}) => {
 }
 
 export default AuthForm
-
-
-// 49:00
