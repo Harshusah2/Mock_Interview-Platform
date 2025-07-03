@@ -70,7 +70,3 @@ const InterviewCard = ({ interviewId, userId, role, type, techstack, createdAt }
 }
 
 export default InterviewCard
-
-
-
-// 01:20:00
