@@ -13,7 +13,6 @@ export async function POST(request: Request) {
     try {
         const { text: questions } = await generateText({
             model: google('gemini-2.0-flash-001'),
-            // prompt: 'Generate a mock interview for a ' + type + ' interview for a ' + role + ' at ' + level + ' level with expertise in ' + techstack + '. The interview should be tailored for a candidate with an experience of ' + amount + ' years. The interview should include questions that are relevant to the role and level, and should be suitable for a candidate with the specified experience.',
             prompt: `Prepare questions for a job interview.
                 The job role is ${role}.
                 The job experience level is ${level}.
