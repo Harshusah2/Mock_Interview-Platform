@@ -19,7 +19,7 @@ interface SavedMessage {
     content: string;
 }
 
-const Agent = ({ userName, userId, type, questions }: AgentProps) => {
+const Agent = ({ userName, userId, type, questions, interviewId }: AgentProps) => {
 
     const router = useRouter();
 
@@ -63,8 +63,32 @@ const Agent = ({ userName, userId, type, questions }: AgentProps) => {
     }, []);
 
 
+    const handleGenerateFeedback = async (messages: SavedMessage[]) => {
+        console.log("Generate feedback here.");
+
+        // TODO: Implement feedback generation logic 
+        const { success, id } = {
+            success: true,
+            id: "feedback-id" // This should be replaced with actual feedback generation logic
+        }
+
+        if(success && id) {
+            router.push(`/interview/${interviewId}/feedback`);
+        } else {
+            console.log("Error generating feedback");
+            router.push("/");
+        }
+    }
+
+
     useEffect(() => {
-        if(callStatus === CallStatus.FINISHED) router.push("/");
+        if(callStatus === CallStatus.FINISHED) {
+            if(type === "generate") {
+                router.push("/");
+            } else {
+                handleGenerateFeedback(messages);
+            }
+        }
     }, [messages, callStatus, type, userId]);
 
 
