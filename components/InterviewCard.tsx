@@ -4,10 +4,13 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import DisplayTechIcons from './DisplayTechIcons';
+import { getFeedbackByinterviewId } from '@/lib/actions/general.action';
 
-const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
+const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
 
-    const feedback = null as Feedback | null;
+    const feedback = userId && id ? await getFeedbackByinterviewId({
+      interviewId: id, userId
+    }) : null;
 
     // in this "g" is for global and "i" is for case-insensitive matching
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
